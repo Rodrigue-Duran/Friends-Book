@@ -1,0 +1,13 @@
+# Fichiers Python compilés
+__pycache__/
+*.pyc
+
+# Base de données locale
+db.sqlite3
+
+# Fichiers de test
+run_tests.py
+
+# Fichiers de l'environnement virtuel (si tu en as un)
+venv/
+.env

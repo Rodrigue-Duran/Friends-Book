@@ -1,0 +1,55 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Modifier le profil</title>
+  <link rel="stylesheet" href="{% static 'css/modifier_mon_profil.css' %}">
+</head>
+<body>
+  <div class="form-container">
+    <h2>Modifier le profil de {{ ami.prenom }} {{ ami.nom }}</h2>
+    <form method="POST" action="{% url 'valider_les_modifications_de_profil_ami' %}">
+      {% csrf_token %}
+      <input type="hidden" name="id" value="{{ id }}">
+      <input type="hidden" name="id_ami" value="{{ ami.id }}">
+
+      <label for="prenom">Prénom :</label>
+      <input type="text" id="prenom" name="prenom" value="{{ ami.prenom }}" required>
+
+      <label for="nom">Nom :</label>
+      <input type="text" id="nom" name="nom" value="{{ ami.nom }}" required>
+
+      <label for="age">Âge :</label>
+      <input type="number" id="age" name="age" value="{{ ami.age }}">
+
+      <label for="domaine_dactiviter">Domaine d'activité :</label>
+      <input type="text" id="domaine_dactiviter" name="domaine_dactiviter" value="{{ ami.domaine_dactiviter }}">
+
+      <label for="niveau_detude">Niveau d'étude :</label>
+      <input type="text" id="niveau_detude" name="niveau_detude" value="{{ ami.niveau_detude }}">
+
+      <label for="telephone">Téléphone :</label>
+      <input type="text" id="telephone" name="telephone" value="{{ ami.telephone }}">
+
+      <label for="universite_actuel">Université actuelle :</label>
+      <input type="text" id="universite_actuel" name="universite_actuel" value="{{ ami.universite_actuel }}">
+
+      <label for="ville">Ville :</label>
+      <input type="text" id="ville" name="ville" value="{{ ami.ville }}">
+
+      <label for="pays">Pays :</label>
+      <input type="text" id="pays" name="pays" value="{{ ami.pays }}">
+
+      <label for="mot_de_passe">Mot de passe :</label>
+      <input type="password" id="mot_de_passe" name="mot_de_passe" value="{{ ami.mot_de_passe }}">
+
+      <div class="button-group">
+        <a href="{% url 'profil_ami' %}?id={{ id }}&id_ami={{ ami.id }}" class="btn cancel">Annuler</a>
+        <button type="submit" class="btn validate">Valider</button>
+      </div>
+    </form>
+  </div>
+</body>
+</html>

@@ -1,0 +1,52 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Profil de {{ personne.prenom }} {{ personne.nom }}</title>
+    <link rel="stylesheet" href="{% static 'css/mon_profil.css' %}">
+    <style>
+        .container {
+            max-width: 900px;
+            margin-top: 50px;
+        }
+        .btn-row {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 30px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container shadow p-4 rounded bg-light">
+        <h2 class="mb-4 text-center">Profil de {{ personne.prenom }} {{ personne.nom }}</h2>
+        
+        <ul class="list-group">
+            <li class="list-group-item"><strong>ID :</strong> {{ personne.id }}</li>
+            <li class="list-group-item"><strong>Âge :</strong> {{ personne.age }}</li>
+            <li class="list-group-item"><strong>Domaine d'activité :</strong> {{ personne.domaine_dactiviter }}</li>
+            <li class="list-group-item"><strong>Niveau d'étude :</strong> {{ personne.niveau_detude }}</li>
+            <li class="list-group-item"><strong>Téléphone :</strong> {{ personne.telephone }}</li>
+            <li class="list-group-item"><strong>Université actuelle :</strong> {{ personne.universite_actuel }}</li>
+            <li class="list-group-item"><strong>Ville :</strong> {{ personne.ville }}</li>
+            <li class="list-group-item"><strong>Pays :</strong> {{ personne.pays }}</li>
+        </ul>
+
+        <h4 class="mt-5">Compétences</h4>
+        <ul class="list-group">
+            {% for competence in personne.competences.all %}
+                <li class="list-group-item">
+                    {{ competence.nom }} — <em>{{ competence.level }}</em>
+                </li>
+            {% empty %}
+                <li class="list-group-item">Aucune compétence enregistrée.</li>
+            {% endfor %}
+        </ul>
+
+        <div class="btn-row">
+            <a href="{% url 'retour_mon_profil_to_menu' %}?id={{ personne.id }}" class="btn btn-secondary">Retour</a>
+            <a href="{% url 'modifier_mon_profil' %}?id={{ personne.id }}" class="btn btn-primary">Modifier</a>
+        </div>
+    </div>
+</body>
+</html>

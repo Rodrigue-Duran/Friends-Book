@@ -1,0 +1,21 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Bienvenue</title>
+  <link rel="stylesheet"  href="{% static 'css/menu_principal.css' %}">
+</head>
+<body>
+  <div class="container">
+    <h1>Bienvenue      {{personne.nom}}              </h1>
+    <div class="button-links">
+      <a href="{% url 'mon_profil' %}?id={{ personne.id }}" class="circle-button">Mon profil</a>
+      <a href="{% url 'mes_amis' %}?id={{ personne.id }}" class="circle-button">Mes amis</a>
+    </div>
+
+    <button onclick="window.location.href='/'" class="logout-button">Se déconnecter</button>
+  </div>
+</body>
+</html>

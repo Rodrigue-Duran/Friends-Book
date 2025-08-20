@@ -1,0 +1,76 @@
+body {
+  font-family: 'Segoe UI', sans-serif;
+  background: linear-gradient(to right, #f0f4ff, #d9e4f5);
+  margin: 0;
+  padding: 40px 0; /* Ajoute de l'espace en haut et en bas */
+  display: flex;
+  justify-content: center;
+  min-height: 100vh;
+  overflow-y: auto; /* Permet le scroll si nécessaire */
+}
+
+.form-container {
+  background-color: white;
+  padding: 40px;
+  border-radius: 12px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+  width: 500px;
+}
+
+h2 {
+  text-align: center;
+  margin-bottom: 30px;
+  color: #2c3e50;
+}
+
+label {
+  display: block;
+  margin-bottom: 8px;
+  font-weight: bold;
+  color: #34495e;
+}
+
+input[type="text"],
+input[type="number"],
+input[type="email"],
+input[type="password"] {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 20px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  font-size: 16px;
+}
+
+.button-group {
+  display: flex;
+  justify-content: space-between;
+}
+
+.btn {
+  padding: 10px 20px;
+  border: none;
+  border-radius: 6px;
+  text-decoration: none;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+.cancel {
+  background-color: #bdc3c7;
+  color: #2c3e50;
+}
+
+.cancel:hover {
+  background-color: #95a5a6;
+}
+
+.validate {
+  background-color: #3498db;
+  color: white;
+}
+
+.validate:hover {
+  background-color: #2980b9;
+}

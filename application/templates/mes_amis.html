@@ -1,0 +1,108 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <title>Mes amis</title>
+  <link rel="stylesheet" href="{% static 'css/mes_amis.css' %}">
+</head>
+<body>
+  <div class="container">
+    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
+        <h2>Liste de mes amis</h2>
+        <button class="btn-ajouter" onclick="document.getElementById('formAjout').style.display='block'">➕ Ajouter un ami</button>
+    </div>
+
+    {% if message %}
+        <div class="notification">
+            <span class="icon">✔️</span> {{ message }}
+            <audio id="notifSound" autoplay>
+                    <source src="{% static 'sounds/success.wav' %}" type="audio/wav">
+            </audio>
+        </div>
+    {% endif %}
+
+
+    <table class="amis-table">
+      <thead>
+        <tr>
+          <th>Nom</th>
+          <th>Prénom</th>
+          <th>Âge</th>
+          <th>Voir plus</th>
+          <th>Supprimer</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for ami in amis %}
+        <tr id="ami-{{ ami.id }}">
+            <td>{{ ami.nom }}</td>
+            <td>{{ ami.prenom }}</td>
+            <td>{{ ami.age }}</td>
+            <td>
+                <a href="{% url 'profil_ami' %}?id={{ personne.id }}&id_ami={{ ami.id }}" class="btn voir-plus">Voir plus</a>
+            </td>
+            <td>
+                <form method="POST" action="{% url 'supprimer_ami' %}" onsubmit="return supprimerAvecAnimation(event, {{ ami.id }});">
+                {% csrf_token %}
+                <input type="hidden" name="id" value="{{ personne.id }}">
+                <input type="hidden" name="id_ami" value="{{ ami.id }}">
+                <button type="submit" class="btn supprimer">Supprimer</button>
+                </form>
+            </td>
+        </tr>
+
+        {% empty %}
+        <tr>
+          <td colspan="4">Aucun ami trouvé.</td>
+        </tr>
+        {% endfor %}
+      </tbody>
+
+    </table>
+  
+
+   
+
+
+    <div id="formAjout" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="document.getElementById('formAjout').style.display='none'">&times;</span>
+            <form action="{% url 'ajouter_ami' %}" method="POST">
+                {% csrf_token %}
+                <label>Nom :</label><input type="text" name="nom" required>
+                <label>Prénom :</label><input type="text" name="prenom" required>
+                <label>Âge :</label><input type="number" name="age" min="0" required>
+                <button type="submit">Valider</button>
+            </form>
+        </div>
+    </div>
+
+
+
+
+
+    <div class="btn-retour">
+      <a href="{% url 'retour_mon_profil_to_menu' %}?id={{ personne.id }}" class="btn retour">Retour</a>
+    </div>
+  </div>
+
+
+
+<script>
+  function supprimerAvecAnimation(event, amiId) {
+    event.preventDefault();
+    const row = document.getElementById(`ami-${amiId}`);
+    row.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+    row.style.opacity = '0';
+    row.style.transform = 'translateX(-100px)';
+    setTimeout(() => {
+      event.target.submit();
+    }, 600);
+    return false;
+  }
+</script>
+
+
+</body>
+</html>

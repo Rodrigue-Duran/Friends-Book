@@ -1,0 +1,27 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Welcome to Friend's Book</title>
+    <link rel="stylesheet" href="{% static 'css/accueil_connect.css' %}">
+   
+</head>
+<body>
+    <h1>Welcome to Friend's Book</h1>
+    <div class="form-container">
+        <form method="POST" action="{% url 'traitement_connection' %}">
+            {% csrf_token %}
+
+            {% if erreur %}<p style="color:red;"> {{ erreur }} </p> {% endif %}
+            {% if message_de_reussite_dinscription %}<p style="color:green;"> {{ message_de_reussite_dinscription }} </p> {% endif %}
+
+
+            <input type="text" name="id" placeholder="Identifiant" required>
+            <input type="password" name="mot_de_passe" placeholder="Mot de passe" required>
+            <button type="submit">Connect</button>
+        </form>
+        <a class="signup-link" href="{% url 'accueil_inscription' %}">Pas encore de compte ? Créez-en un ici</a>
+    </div>
+</body>
+</html>
