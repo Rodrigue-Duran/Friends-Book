@@ -60,7 +60,7 @@ Cette version est une **première ébauche** du projet. Certaines fonctionnalit�
 
 
 # 1. Cloner le dépôt
-git clone https://github.com/tonpseudo/friend_book.git
+git clone https://github.com/Rodrigue-Duran/Friends-Book.git
 cd friend_book
 
 # 2. Créer un environnement virtuel (optionnel mais recommandé)
