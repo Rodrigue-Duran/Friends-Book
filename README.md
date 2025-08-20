@@ -6,6 +6,7 @@
 
 FriendBook est une plateforme sociale conçue pour faciliter la mise en relation entre individus du monde entier en fonction de leurs compétences. Elle permet à chacun de créer un profil détaillé, d’ajouter des amis, et de consulter les informations professionnelles et académiques des autres utilisateurs.
 
+FriendBook is a social platform designed to connect individuals from around the world based on their skills. It allows users to create detailed profiles, add friends, and view the professional and academic information of other members.
 ---
 
 ## 📚 Sommaire
